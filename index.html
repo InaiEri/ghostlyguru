@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostlyGuru.com - Spectral Wisdom from Beyond</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="styles3.css">
+    <!-- Add this line for the favicon -->
+    <link rel="icon" type="image/png" href="images/tumblr_020375139559c5774df770bab5381920_69052554_250.png">
+</head>
+<body>
+    <audio id="clickSound" src="sounds/Mouse Click Sound Effect.mp3" preload="auto"></audio>
+    <div class="desktop">
+        <div class="icon" onclick="handleClick('internet')">
+            <img src="images/Microsoft Windows 3 International.png" alt="Connect to the Internet">
+            <div class="icon-label">Connect to the Internet</div>
+        </div>
+        <div class="icon" onclick="handleClick('documents')">
+            <img src="images/Microsoft Windows 3 Folder Open Document.png" alt="My Documents">
+            <div class="icon-label">My<br>Documents</div>
+        </div>
+        <div class="icon" onclick="handleClick('recycle')">
+            <img src="images/Microsoft Windows 3 Waste Basket Full.png" alt="Recycle Bin">
+            <div class="icon-label">Recycle Bin</div>
+        </div>
+        <div class="icon" onclick="handleClick('computer')">
+            <img src="images/Microsoft Windows 3 Computer.png" alt="My Computer">
+            <div class="icon-label">My Computer</div>
+        </div>
+    </div>
+
+    <div class="taskbar">
+        <div class="start-button" onclick="handleClick()">Start</div>
+        <div id="taskbarItems"></div>
+        <div id="clock" class="clock">
+            <img src="images/Microsoft Windows 3 Clock.png" alt="Clock" class="clock-icon">
+            <span class="clock-time"></span>
+            <span class="clock-separator"></span>
+            <span class="clock-date"></span>
+        </div>
+    </div>
+
+    <div id="internetWindow" class="window">
+        <div class="window-header" onmousedown="startDragging(event, this.parentElement)">
+            <span>Internet Explorer - GhostlyGuru.com</span>
+            <span class="close-button" onclick="handleClick('internet', true)">X</span>
+        </div>
+        <div class="window-content">
+            <div class="ghostly-guru-content">
+                <header>
+                    <div class="logo">GhostlyGuru.com</div>
+                    <div class="tagline">Spectral Wisdom from Beyond</div>
+                </header>
+                
+                <div class="content-box">
+                    <h2 class="welcome-title">Welcome to MY Spectral Wisdom!</h2>
+                    <div class="intro-section">
+                        <img src="images/yande.re 333403 sample autographed inugami_kira majo_koi_nikki nanno_alice qoobrand seifuku.jpg" alt="Inai Eri" class="intro-image">
+                        <div>
+                            <p>I'm Inai Eri, your friendly neighborhood ghost girl. I've been around for a while (like, a really long while), so I've picked up a thing or two about life... and afterlife! Need advice? I'm here to help! (´｡• ω •｡`) ♡</p>
+                            <button class="info-button" onclick="handleClick('infoModal')">Know more about Inai Eri</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-box featured-advice">
+                    <img src="images/tumblr_ce3d5550596eca610c795c476e20c867_c4cb00b7_500.png" alt="Divider" class="advice-divider">
+                    <h2 class="advice-title">Featured Advice</h2>
+                    <div class="advice-container">
+                        <div class="question-section">
+                            <img src="images/opera_fOJM3mxPYJ.png" alt="Anonymous Avatar" class="avatar-image">
+                            <div class="question-content">
+                                <span class="asker">ANONYMOUS ASKED:</span>
+                                <p class="question-text">"Dear Inai Eri, I'm having trouble making friends because people can't see me. Any tips?"</p>
+                            </div>
+                        </div>
+                        <div class="response-section">
+                            <span class="responder">Inai Eri:</span>
+                            <p class="response-text">Try leaving friendly notes or small gifts. It's the thought that counts, even if they can't see the thinker!</p>
+                        </div>
+                        <div class="metadata-section">
+                            <span class="date">2008.05.22</span>
+                            <span class="heart-icon" onclick="toggleHeart(this)">❤</span>
+                        </div>
+                    </div>
+                    <img src="images/tumblr_ce3d5550596eca610c795c476e20c867_c4cb00b7_500.png" alt="Divider" class="advice-divider">
+                </div>
+                
+                <div class="cta-button-container">
+                    <button class="cta-button" onclick="handleClick('questionModal')">Ask Inai Eri a question! (*≧ω≦)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="documentsWindow" class="window">
+        <div class="window-header" onmousedown="startDragging(event, this.parentElement)">
+            <span>My Documents</span>
+            <span class="close-button" onclick="handleClick('documents', true)">X</span>
+        </div>
+        <div class="window-content">
+            <div class="file-icon" onclick="handleFileClick('images/opera_cM8wNLGeG1.png')">
+                <img src="images/opera_cM8wNLGeG1.png" alt="Document Image" style="width: 50px; height: 50px; object-fit: cover;">
+                <p>When_The_Moon's....jpg</p>
+            </div>
+            <div class="file-icon" onclick="handleClick('dreamsTextModal')">
+                <img src="images/Microsoft Windows 3 Notepad.png" alt="Notepad Icon" style="width: 50px; height: 50px; object-fit: contain;">
+                <p>DreamsAboutYou.txt</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="recycleWindow" class="window">
+        <div class="window-header" onmousedown="startDragging(event, this.parentElement)">
+            <span>Recycle Bin</span>
+            <span class="close-button" onclick="handleClick('recycle', true)">X</span>
+        </div>
+        <div class="window-content">
+            <div id="recycleBinContents">
+                <div class="file-icon" onclick="openImageModal('images/yande.re 333403 sample autographed inugami_kira majo_koi_nikki nanno_alice qoobrand seifuku.jpg')">
+                    <img src="images/yande.re 333403 sample autographed inugami_kira majo_koi_nikki nanno_alice qoobrand seifuku.jpg" alt="InaiEri.jpg" style="width: 50px; height: 50px; object-fit: cover;">
+                    <p>InaiEri.jpg</p>
+                </div>
+                <div class="file-icon" onclick="handleClick('textModal')">
+                    <img src="images/Microsoft Windows 3 Compose.png" alt=">_<.txt" style="width: 50px; height: 50px; object-fit: contain;">
+                    <p>>_<.txt</p>
+                </div>
+            </div>
+            <div class="recycle-bin-footer">
+                <button class="empty-recycle-bin" onclick="emptyRecycleBin()">Empty recycle bin</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="computerWindow" class="window">
+        <div class="window-header" onmousedown="startDragging(event, this.parentElement)">
+            <span>System Specifications</span>
+            <span class="close-button" onclick="handleClick('computer', true)">X</span>
+        </div>
+        <div class="window-content">
+            <div class="system-info">
+                <img src="images/Microsoft Windows 3 Setup.png" alt="Computer Icon" class="system-icon">
+                <div class="info-text unselectable">
+                    <p><strong>Operating System:</strong></p>
+                    <p class="system-details">
+                        Microsoft Windows 2000<br>
+                        Version 5.00.1195<br>
+                        Service Pack 4
+                    </p>
+                    <p><strong>Registered to:</strong></p>
+                    <p class="system-details">
+                        MV RTA<br>
+                        Romance Empire RTA51876-IT-7590214-05343
+                    </p>
+                    <p><strong>Computer:</strong></p>
+                    <p class="system-details">
+                        Intel(R) Pentium(R) III CPU family<br>
+                        1266MHz<br>
+                        GA/IA COMPATIBLE<br>
+                        2,160,900 KB RAM
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="questionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="handleClick('questionModal', true)">&times;</span>
+            <h2 class="modal-title">Ask Inai Eri a question</h2>
+            <textarea id="questionInput" placeholder="Type your question here..."></textarea>
+            <div class="disclaimer">
+                <input type="checkbox" id="disclaimerCheckbox">
+                <label for="disclaimerCheckbox">By sending a question, you hereby declare that you are indeed a ghostly being and not one of the living! Please confirm by checking the box, be careful or I might have to haunt you! (⁀ᗢ⁀)</label>
+            </div>
+            <button id="sendButton" class="send-button">Send</button>
+        </div>
+    </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="handleClick('infoModal', true)">&times;</span>
+            <p>Why didn't you care to know more when I was alive? Some things are better left unsaid... even now.</p>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="handleClick('imageModal', true)">&times;</span>
+        <img id="modalImage">
+    </div>
+
+    <div id="textModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="handleClick('textModal', true)">&times;</span>
+            <p>So you threw me here? How cruel...</p>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+    <!-- Add this new modal just before the closing </body> tag -->
+    <div id="dreamsCloseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeElement('dreamsCloseModal')">&times;</span>
+            <p>Puah, you should put <strong>this</strong> in <strong>Recycle</strong> bin IYKWIM (¬`‸´¬)</p>
+        </div>
+    </div>
+</body>
+</html>
