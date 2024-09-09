@@ -134,42 +134,48 @@
         </div>
     </div>
 
-    <div id="documentsWindow" class="window">
+    <div id="documentsWindow" class="window" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
         <div class="window-header" onmousedown="startDragging(event, this.parentElement)">
             <span>My Documents</span>
             <span class="close-button" onclick="handleClick('documents', true)">X</span>
         </div>
-        <div class="window-content">
-            <div class="file-icon" onclick="handleFileClick('images/opera_cM8wNLGeG1.png')">
-                <img src="images/opera_cM8wNLGeG1.png" alt="Document Image" style="width: 50px; height: 50px; object-fit: cover;">
-                <p>When_The_Moon's....jpg</p>
+        <div class="window-content" id="documentsContents">
+            <div class="file-icon" draggable="true" ondragstart="handleDragStart(event)" onclick="handleFileClick('images/opera_cM8wNLGeG1.png')">
+                <div class="file-content">
+                    <img src="images/opera_cM8wNLGeG1.png" alt="Document Image" style="width: 50px; height: 50px; object-fit: cover;" ondragstart="event.preventDefault()">
+                    <p ondragstart="event.preventDefault()">When_The_Moon's....jpg</p>
+                </div>
             </div>
-            <div class="file-icon" onclick="handleClick('dreamsTextModal')">
-                <img src="images/Microsoft Windows 3 Notepad.png" alt="Notepad Icon" style="width: 50px; height: 50px; object-fit: contain;">
-                <p>DreamsAboutYou.txt</p>
+            <div class="file-icon" draggable="true" ondragstart="handleDragStart(event)" onclick="handleClick('dreamsTextModal')">
+                <div class="file-content">
+                    <img src="images/Microsoft Windows 3 Notepad.png" alt="Notepad Icon" style="width: 50px; height: 50px; object-fit: contain;" ondragstart="event.preventDefault()">
+                    <p ondragstart="event.preventDefault()">DreamsAboutYou.txt</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="recycleWindow" class="window">
+    <div id="recycleWindow" class="window" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
         <div class="window-header" onmousedown="startDragging(event, this.parentElement)">
             <span>Recycle Bin</span>
             <span class="close-button" onclick="handleClick('recycle', true)">X</span>
         </div>
-        <div class="window-content">
-            <div id="recycleBinContents">
-                <div class="file-icon" onclick="openImageModal('images/yande.re 333403 sample autographed inugami_kira majo_koi_nikki nanno_alice qoobrand seifuku.jpg')">
-                    <img src="images/yande.re 333403 sample autographed inugami_kira majo_koi_nikki nanno_alice qoobrand seifuku.jpg" alt="InaiEri.jpg" style="width: 50px; height: 50px; object-fit: cover;">
-                    <p>InaiEri.jpg</p>
-                </div>
-                <div class="file-icon" onclick="handleClick('textModal')">
-                    <img src="images/Microsoft Windows 3 Compose.png" alt=">_<.txt" style="width: 50px; height: 50px; object-fit: contain;">
-                    <p>>_<.txt</p>
+        <div class="window-content" id="recycleBinContents">
+            <div class="file-icon" draggable="true" ondragstart="handleDragStart(event)" onclick="openImageModal('images/yande.re 333403 sample autographed inugami_kira majo_koi_nikki nanno_alice qoobrand seifuku.jpg')">
+                <div class="file-content">
+                    <img src="images/yande.re 333403 sample autographed inugami_kira majo_koi_nikki nanno_alice qoobrand seifuku.jpg" alt="InaiEri.jpg" style="width: 50px; height: 50px; object-fit: cover;" ondragstart="event.preventDefault()">
+                    <p ondragstart="event.preventDefault()">InaiEri.jpg</p>
                 </div>
             </div>
-            <div class="recycle-bin-footer">
-                <button class="empty-recycle-bin" onclick="emptyRecycleBin()">Empty recycle bin</button>
+            <div class="file-icon" draggable="true" ondragstart="handleDragStart(event)" onclick="handleClick('textModal')">
+                <div class="file-content">
+                    <img src="images/Microsoft Windows 3 Compose.png" alt=">_<.txt" style="width: 50px; height: 50px; object-fit: contain;" ondragstart="event.preventDefault()">
+                    <p ondragstart="event.preventDefault()">>_<.txt</p>
+                </div>
             </div>
+        </div>
+        <div class="recycle-bin-footer">
+            <button class="empty-recycle-bin" onclick="emptyRecycleBin()">Empty recycle bin</button>
         </div>
     </div>
 

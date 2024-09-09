@@ -8,6 +8,7 @@ const windows = {
 let isDragging = false;
 let currentWindow = null;
 let offsetX, offsetY;
+let draggedElement = null;
 
 function startDragging(e, window) {
     isDragging = true;
@@ -364,4 +365,25 @@ function playClickSound() {
     const clickSound = document.getElementById('clickSound');
     clickSound.currentTime = 0; // Rewind to the start
     clickSound.play();
+}
+
+function handleDragStart(event) {
+    draggedElement = event.target;
+    event.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragOver(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+}
+
+function handleDrop(event) {
+    event.preventDefault();
+    if (draggedElement) {
+        const targetContainer = event.target.closest('.window-content');
+        if (targetContainer) {
+            targetContainer.appendChild(draggedElement);
+            draggedElement = null;
+        }
+    }
 }
