@@ -284,6 +284,566 @@ body, html {
 .advice-container {
     background-color: #fff;
     border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.advice-container + .advice-container {
+    margin-top: 40px;
+}
+
+.question-section {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    background-color: #F0F0F0;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: left;
+}
+
+.avatar-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.question-content {
+    flex: 1;
+}
+
+.asker, .responder {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.asker {
+    color: #5d5b5b;
+}
+
+.responder {
+    color: #826461;
+}
+
+.question-text, .response-text {
+    margin: 0;
+}
+
+.question-text {
+    font-style: italic;
+}
+
+.response-section {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.metadata-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.heart-icon {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.heart-icon.active {
+    color: #FFB6C1;
+}
+
+.cta-button-container {
+    text-align: center;
+    margin: 40px 0 60px;
+}
+
+.cta-button, .info-button, .send-button, .bottom-button {
+    background-color: #f4ecef;
+    color: #5d5b5b;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'AngerisPixel', sans-serif;
+    border: none;
+}
+
+.cta-button {
+    padding: 15px 32px;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.info-button {
+    padding: 8px 15px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.send-button {
+    padding: 10px 15px;
+    margin: 15px 0 0 0;
+    width: 100%;
+    font-size: 16px;
+}
+
+.bottom-button {
+    padding: 2px 10px;
+    background-color: #d4d0c8;
+    border: 1px solid #808080;
+}
+
+.cta-button:hover, .info-button:hover, .send-button:hover, .bottom-button:hover {
+    opacity: 0.8;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-title {
+    font-family: 'AngerisPixel', sans-serif;
+    font-size: 20px;
+    color: #5d5b5b;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.disclaimer {
+    margin: 15px 0;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+#questionInput {
+    width: 100%;
+    height: 60px;
+    resize: none;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.file-icon {
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.file-icon p {
+    margin: 5px 0;
+    font-size: 12px;
+}
+
+#imageModal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+#imageModal img {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+#imageModal .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#imageModal .close:hover,
+#imageModal .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.system-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.system-icon {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 10px;
+}
+
+.info-text {
+    width: 100%;
+    overflow-y: auto;
+    padding-right: 10px;
+    padding: 5px;
+    padding-bottom: 20px;
+}
+
+.info-text p {
+    margin: 5px 0;
+    font-size: 12px;
+}
+
+#computerWindow .window-content {
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.system-info .info-text p:first-child {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.system-info .info-text p strong {
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0000ae;
+    color: #000;
+    overflow: hidden;
+}
+
+.desktop {
+    height: calc(100% - 30px);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.icon {
+    width: 80px;
+    text-align: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 5px;
+}
+
+.icon-label {
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    font-size: 12px;
+    max-width: 70px;
+    text-align: center;
+    word-wrap: break-word;
+    line-height: 1.2;
+    overflow: visible;
+    white-space: normal;
+}
+
+.icon-label.single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.taskbar {
+    height: 30px;
+    background-color: #c0c0c0;
+    border-top: 2px solid #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+}
+
+#taskbarItems {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+#taskbarItems:hover {
+    overflow-x: auto;
+}
+
+#taskbarItems::-webkit-scrollbar {
+    height: 0px;
+}
+
+#taskbarItems::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2px;
+}
+
+#taskbarItems::-webkit-scrollbar-track {
+    background-color: #c0c0c0;
+}
+
+.start-button, .taskbar-item {
+    background-color: #c0c0c0;
+    border: 2px outset #fff;
+    padding: 2px 5px;
+    margin: 2px;
+    font-size: 11px;
+    cursor: pointer;
+    height: 22px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.start-button {
+    font-weight: bold;
+    width: auto;
+    text-align: left;
+    padding-left: 22px;
+    background-image: url('images/Microsoft Windows 3 Logo.png');
+    background-repeat: no-repeat;
+    background-position: 2px center;
+    background-size: 16px 16px;
+}
+
+.taskbar-item {
+    min-width: 100px;
+    max-width: 200px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.taskbar-item img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+.taskbar-item.active {
+    background-color: #dfdfdf;
+}
+
+.window {
+    position: absolute;
+    background-color: #ffffff;
+    border: 2px solid #808080;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    min-width: 300px;
+    min-height: 200px;
+    display: none;
+    resize: none;
+    overflow: hidden;
+}
+
+.window-header {
+    background-color: #000080;
+    color: #fff;
+    padding: 2px 5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    cursor: move;
+}
+
+.window-content {
+    width: 100%;
+    height: calc(100% - 22px);
+    overflow: auto;
+    background-color: #ffffff;
+}
+
+.close-button {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0 5px;
+    margin-left: 10px;
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+#internetWindow,
+#computerWindow,
+#documentsWindow,
+#recycleWindow {
+    background-color: #ffffff;
+}
+
+#internetWindow .window-content,
+#computerWindow .window-content,
+#documentsWindow .window-content,
+#recycleWindow .window-content {
+    background-color: #ffffff;
+}
+
+#internetWindow .content-area,
+#computerWindow .content-area,
+#documentsWindow .content-area,
+#recycleWindow .content-area {
+    background-color: #ffffff;
+    border: none;
+}
+
+#internetWindow {
+    width: 800px;
+    height: 600px;
+}
+
+#computerWindow, #documentsWindow, #recycleWindow {
+    width: 400px;
+    height: 300px;
+}
+
+.intro-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.intro-image {
+    max-width: 200px;
+    height: auto;
+    border: 2px solid #000;
+}
+
+.welcome-title {
+    font-family: 'AngerisPixel', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #000080;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom, #5d5b5b, #e4dce4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.featured-advice {
+    margin: 40px auto;
+    text-align: center;
+    max-width: 600px;
+}
+
+@font-face {
+    font-family: 'Aromabar';
+    src: url('aromabar-font/AromabarPersonalUse-Aye6.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AngerisPixel';
+    src: url('angeris-pixel-font/AngerisPixelDemoRegular-DYJdD.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.advice-title, .tagline, .logo {
+    font-family: 'AngerisPixel', sans-serif;
+    color: #5d5b5b;
+    text-align: center;
+}
+
+.advice-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.tagline {
+    font-size: 28px;
+    margin: 10px 0 20px;
+    font-weight: bold;
+}
+
+.logo {
+    font-size: 32px;
+    margin: 20px 0 10px;
+    font-weight: bold;
+}
+
+.advice-divider {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+}
+
+.advice-container {
+    background-color: #fff;
+    border-radius: 8px;
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     max-width: 600px;
@@ -598,4 +1158,16 @@ body.modal-open {
     -ms-user-select: none;
     user-select: none;
     pointer-events: none;
+}
+
+#internetWindow .advice-container + .advice-container {
+    margin-top: 40px;
+}
+
+.ghostly-guru-content {
+    padding-bottom: 40px; /* Add this line */
+}
+
+#internetWindow .window-content {
+    padding-bottom: 20px; /* Add this line */
 }
