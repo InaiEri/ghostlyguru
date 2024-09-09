@@ -47,6 +47,7 @@ function handleClick(elementId, isClose = false) {
         // Check if we're closing the dreams image
         if (elementId === 'imageModal' && document.getElementById('modalImage').src.includes('dairy.jpg')) {
             setTimeout(() => {
+                updateDreamsCloseModalText();
                 openElement('dreamsCloseModal');
             }, 100);
         }
@@ -57,6 +58,15 @@ function handleClick(elementId, isClose = false) {
     // Special handling for DreamsAboutYou.txt
     if (elementId === 'dreamsTextModal') {
         openImageModal('images/dairy.jpg');
+    }
+}
+
+function updateDreamsCloseModalText() {
+    const dreamsTextInRecycle = document.getElementById('recycleBinContents').contains(document.getElementById('dreamsText'));
+    if (dreamsTextInRecycle) {
+        document.querySelector('#dreamsCloseModal .modal-content p').textContent = 'a';
+    } else {
+        document.querySelector('#dreamsCloseModal .modal-content p').innerHTML = 'Puah, you should put <strong>this</strong> in <strong>Recycle</strong> bin IYKWIM (¬`‸´¬)';
     }
 }
 
