@@ -59,6 +59,11 @@ function handleClick(elementId, isClose = false) {
     if (elementId === 'dreamsTextModal') {
         openImageModal('images/dairy.jpg');
     }
+
+    // Special handling for textModal
+    if (elementId === 'textModal') {
+        updateTextModalContent();
+    }
 }
 
 function updateDreamsCloseModalText() {
@@ -67,6 +72,18 @@ function updateDreamsCloseModalText() {
         document.querySelector('#dreamsCloseModal .modal-content p').textContent = 'a';
     } else {
         document.querySelector('#dreamsCloseModal .modal-content p').innerHTML = 'Puah, you should put <strong>this</strong> in <strong>Recycle</strong> bin IYKWIM (¬`‸´¬)';
+    }
+}
+
+function updateTextModalContent() {
+    const documentsContents = document.getElementById('documentsContents');
+    const inaiPictureInDocuments = documentsContents.contains(document.getElementById('inaiPicture'));
+    const inaiTextInDocuments = documentsContents.contains(document.getElementById('inaiText'));
+
+    if (inaiPictureInDocuments && inaiTextInDocuments) {
+        document.querySelector('#textModal .modal-content p').textContent = 'aa';
+    } else {
+        document.querySelector('#textModal .modal-content p').textContent = 'So you threw me here? How cruel...';
     }
 }
 
