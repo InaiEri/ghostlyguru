@@ -69,9 +69,9 @@ function handleClick(elementId, isClose = false) {
 function updateDreamsCloseModalText() {
     const dreamsTextInRecycle = document.getElementById('recycleBinContents').contains(document.getElementById('dreamsText'));
     if (dreamsTextInRecycle) {
-        document.querySelector('#dreamsCloseModal .modal-content p').textContent = 'a';
+        document.querySelector('#dreamsCloseModal .modal-content p').textContent = 'They were very cute, but they definitely were not about me...';
     } else {
-        document.querySelector('#dreamsCloseModal .modal-content p').innerHTML = 'Puah, you should put <strong>this</strong> in <strong>Recycle</strong> bin IYKWIM (¬`‸´¬)';
+        document.querySelector('#dreamsCloseModal .modal-content p').innerHTML = 'Puah, you should put this in <strong>Recycle</strong> bin IYKWIM (¬`‸´¬)';
     }
 }
 
@@ -79,9 +79,12 @@ function updateTextModalContent() {
     const documentsContents = document.getElementById('documentsContents');
     const inaiPictureInDocuments = documentsContents.contains(document.getElementById('inaiPicture'));
     const inaiTextInDocuments = documentsContents.contains(document.getElementById('inaiText'));
+    const guitarTabInDocuments = documentsContents.contains(document.getElementById('guitarTab'));
 
-    if (inaiPictureInDocuments && inaiTextInDocuments) {
-        document.querySelector('#textModal .modal-content p').textContent = 'aa';
+    if (inaiTextInDocuments && !inaiPictureInDocuments && guitarTabInDocuments) {
+        document.querySelector('#textModal .modal-content p').textContent = 'I wish you could play it for me';
+    } else if (inaiPictureInDocuments && inaiTextInDocuments) {
+        document.querySelector('#textModal .modal-content p').textContent = 'Do you want to keep me among your things? How sweet...';
     } else {
         document.querySelector('#textModal .modal-content p').textContent = 'So you threw me here? How cruel...';
     }
