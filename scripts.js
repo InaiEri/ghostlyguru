@@ -83,6 +83,8 @@ function updateTextModalContent() {
 
     if (inaiTextInDocuments && !inaiPictureInDocuments && guitarTabInDocuments) {
         document.querySelector('#textModal .modal-content p').textContent = 'I wish you could play it for me';
+    } else if (inaiTextInDocuments && documentsContents.children.length === 1) {
+        document.querySelector('#textModal .modal-content p').textContent = "It's just me and you now";
     } else if (inaiPictureInDocuments && inaiTextInDocuments) {
         document.querySelector('#textModal .modal-content p').textContent = 'Do you want to keep me among your things? How sweet...';
     } else {
@@ -404,7 +406,7 @@ function emptyRecycleBin() {
         recycleBinContents.innerHTML = '';
         recycleBinContents.dataset.lastItem = 'allItems';
         recycleBinSound.onended = function() {
-             alert("You should not throw away what you love.");
+             alert("Berserk mode?");
             };
     }else if (allItemsExceptDreamsTextInRecycle) {
         recycleBinContents.innerHTML = '';
@@ -421,7 +423,7 @@ function emptyRecycleBin() {
     } else if (recycleBinContents.children.length === 0) {
         // Recycle bin is already empty
         recycleBinSound.onended = function() {
-            alert('Calm down... I have already disappeared, both from your life and from your computer.');
+            alert('Calm down... I have already disappeared, both from your life and from your computer now.');
         };
     } else {
         // Recycle bin has contents, proceed with emptying
