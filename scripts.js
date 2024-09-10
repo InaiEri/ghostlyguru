@@ -353,7 +353,22 @@ function emptyRecycleBin() {
     
     recycleBinSound.play();
     
-    if (recycleBinContents.children.length === 0) {
+    const dreamsText = document.getElementById('dreamsText');
+    const onlyDreamsTextInRecycle = recycleBinContents.children.length === 1 && recycleBinContents.contains(dreamsText);
+    const wasDreamsTextLastItem = recycleBinContents.children.length === 0 && recycleBinContents.dataset.lastItem === 'dreamsText';
+
+    if (onlyDreamsTextInRecycle) {
+        recycleBinContents.innerHTML = '';
+        recycleBinContents.dataset.lastItem = 'dreamsText';
+        recycleBinSound.onended = function() {
+            alert("Perfect~ this way you won't hurt anyone anymore.");
+        };
+    } else if (wasDreamsTextLastItem) {
+        // Recycle bin is empty, but the last item was dreamsText
+        recycleBinSound.onended = function() {
+            alert("You won't get them back.");
+        };
+    } else if (recycleBinContents.children.length === 0) {
         // Recycle bin is already empty
         recycleBinSound.onended = function() {
             alert('Calm down... I have already disappeared, both from your life and from your computer.');
@@ -361,6 +376,7 @@ function emptyRecycleBin() {
     } else {
         // Recycle bin has contents, proceed with emptying
         recycleBinContents.innerHTML = '';
+        recycleBinContents.dataset.lastItem = '';
         recycleBinSound.onended = function() {
             alert('Are you trying to redeem yourself, huh?');
         };
