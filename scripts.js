@@ -362,8 +362,12 @@ function emptyRecycleBin() {
     const onlyGuitarTabInRecycle = recycleBinContents.children.length === 1 && recycleBinContents.contains(guitarTab);
     const wasDreamsTextLastItem = recycleBinContents.children.length === 0 && recycleBinContents.dataset.lastItem === 'dreamsText';
     const wasGuitarTabLastItem = recycleBinContents.children.length === 0 && recycleBinContents.dataset.lastItem === 'guitarTab';
-    const allItemsInRecycle = recycleBinContents.contains(guitarTab) && recycleBinContents.contains(inaiPicture) && recycleBinContents.contains(inaiText) && !recycleBinContents.contains(dreamsText);
-
+    const wasInaiPictureAndInaiTextLastItems = recycleBinContents.children.length === 0 && recycleBinContents.dataset.lastItem === 'inaiPictureAndInaiText';
+    const wasAllHisItemsLastItem = recycleBinContents.children.length === 0 && recycleBinContents.dataset.lastItem === 'allHisItems';
+    const allItemsInRecycle = recycleBinContents.contains(guitarTab) && recycleBinContents.contains(inaiPicture) && recycleBinContents.contains(inaiText) && recycleBinContents.contains(dreamsText);
+    const allItemsExceptDreamsTextInRecycle = recycleBinContents.contains(guitarTab) && recycleBinContents.contains(inaiPicture) && recycleBinContents.contains(inaiText) && !recycleBinContents.contains(dreamsText);
+    const allHisItemsInRecycle = recycleBinContents.contains(guitarTab) && recycleBinContents.contains(dreamsText);
+    
     if (onlyDreamsTextInRecycle) {
         recycleBinContents.innerHTML = '';
         recycleBinContents.dataset.lastItem = 'dreamsText';
@@ -386,12 +390,34 @@ function emptyRecycleBin() {
         recycleBinSound.onended = function() {
             alert("I would like to be able to encourage you in things you love, one last time...");
         };
+    } else if (wasAllHisItemsLastItem) {
+        // Recycle bin is empty, but the last item was guitarTab
+        recycleBinSound.onended = function() {
+            alert("I don't understand you.");
+        };
+    } else if (wasInaiPictureAndInaiTextLastItems) {
+        // Recycle bin is empty, but the last items were inaiPicture and inaiText
+        recycleBinSound.onended = function() {
+            alert('Calm down... I have already disappeared, both from your life and from your computer now.');
+        };
     } else if (allItemsInRecycle) {
         recycleBinContents.innerHTML = '';
-        recycleBinContents.dataset.lastItem = '';
+        recycleBinContents.dataset.lastItem = 'allItems';
         recycleBinSound.onended = function() {
-            alert("You should not throw away what you love.");
-        };
+             alert("You should not throw away what you love.");
+            };
+    }else if (allItemsExceptDreamsTextInRecycle) {
+        recycleBinContents.innerHTML = '';
+        recycleBinContents.dataset.lastItem = 'allItemsExceptDreamsText';
+        recycleBinSound.onended = function() {
+             alert("You should not throw away what you love.");
+            };
+    } else if (allHisItemsInRecycle) {
+        recycleBinContents.innerHTML = '';
+        recycleBinContents.dataset.lastItem = 'allHisItems';
+        recycleBinSound.onended = function() {
+             alert("You should not throw away all of this.");
+            };
     } else if (recycleBinContents.children.length === 0) {
         // Recycle bin is already empty
         recycleBinSound.onended = function() {
@@ -400,7 +426,11 @@ function emptyRecycleBin() {
     } else {
         // Recycle bin has contents, proceed with emptying
         recycleBinContents.innerHTML = '';
-        recycleBinContents.dataset.lastItem = '';
+        if (recycleBinContents.contains(inaiPicture) && recycleBinContents.contains(inaiText)) {
+            recycleBinContents.dataset.lastItem = 'inaiPictureAndInaiText';
+        } else {
+            recycleBinContents.dataset.lastItem = '';
+        }
         recycleBinSound.onended = function() {
             alert('Deep down, I wonder if the all good things you told me were true.');
         };
