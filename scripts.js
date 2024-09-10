@@ -354,8 +354,15 @@ function emptyRecycleBin() {
     recycleBinSound.play();
     
     const dreamsText = document.getElementById('dreamsText');
+    const guitarTab = document.getElementById('guitarTab');
+    const inaiPicture = document.getElementById('inaiPicture');
+    const inaiText = document.getElementById('inaiText');
+    
     const onlyDreamsTextInRecycle = recycleBinContents.children.length === 1 && recycleBinContents.contains(dreamsText);
+    const onlyGuitarTabInRecycle = recycleBinContents.children.length === 1 && recycleBinContents.contains(guitarTab);
     const wasDreamsTextLastItem = recycleBinContents.children.length === 0 && recycleBinContents.dataset.lastItem === 'dreamsText';
+    const wasGuitarTabLastItem = recycleBinContents.children.length === 0 && recycleBinContents.dataset.lastItem === 'guitarTab';
+    const allItemsInRecycle = recycleBinContents.contains(guitarTab) && recycleBinContents.contains(inaiPicture) && recycleBinContents.contains(inaiText) && !recycleBinContents.contains(dreamsText);
 
     if (onlyDreamsTextInRecycle) {
         recycleBinContents.innerHTML = '';
@@ -363,10 +370,27 @@ function emptyRecycleBin() {
         recycleBinSound.onended = function() {
             alert("Perfect~ this way you won't hurt anyone anymore.");
         };
+    } else if (onlyGuitarTabInRecycle) {
+        recycleBinContents.innerHTML = '';
+        recycleBinContents.dataset.lastItem = 'guitarTab';
+        recycleBinSound.onended = function() {
+            alert("I would like to be able to encourage you in things you love, one last time...");
+        };
     } else if (wasDreamsTextLastItem) {
         // Recycle bin is empty, but the last item was dreamsText
         recycleBinSound.onended = function() {
             alert("You won't get them back.");
+        };
+    } else if (wasGuitarTabLastItem) {
+        // Recycle bin is empty, but the last item was guitarTab
+        recycleBinSound.onended = function() {
+            alert("I would like to be able to encourage you in things you love, one last time...");
+        };
+    } else if (allItemsInRecycle) {
+        recycleBinContents.innerHTML = '';
+        recycleBinContents.dataset.lastItem = '';
+        recycleBinSound.onended = function() {
+            alert("You should not throw away what you love.");
         };
     } else if (recycleBinContents.children.length === 0) {
         // Recycle bin is already empty
@@ -378,7 +402,7 @@ function emptyRecycleBin() {
         recycleBinContents.innerHTML = '';
         recycleBinContents.dataset.lastItem = '';
         recycleBinSound.onended = function() {
-            alert('Are you trying to redeem yourself, huh?');
+            alert('Deep down, I wonder if the all good things you told me were true.');
         };
     }
 }
